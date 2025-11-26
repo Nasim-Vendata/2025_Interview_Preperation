@@ -1,0 +1,72 @@
+DSA Custom Design : 
+	1. HashMap with Collision Handling
+	2. LinkedList
+	3. Stack
+	4. Queue
+	5. Doubly LinkedList
+	6. HashTable
+	7. Concurrent HashMap ***
+	8. PriorityQueue
+	9. LRU Cache using LinkedHashMap and Doubly LinkedList
+	10. Binary Tree + BFS/DFS
+	11. Basic Graph (BFS/DFS)
+	
+Sorting Algorithm : (Learn Time Complexities & Stability)
+	1. Merge Sort
+	2. Quick Sort ***
+	3. Heap Sort
+	4. Insertion Sort ***
+	5. Bubble Sort ***
+	
+Design Patterns : 
+	1. Singleton
+	2. Factory
+	3. Builder
+	4. Strategy
+	5. Observer
+	
+Java Topics Preperation :
+	1. String , StringBuffer , StringBuilder
+	2. Java8
+	3. Streams API
+	4. Collections Framework
+	5. MultiThreadding
+	6. Exception Handling
+	7. Oops
+	8. Interface
+	9. Functional Interfaces (Supplier, Consumer, Predicate, Function)
+  10. Lambda Expressions
+  11. Garbage Collection
+  12. JVM Internals (Classloader, Heap, Stack memory)
+  13. Immutability (asked often)
+  14. Annotation
+	
+Spring Boot Topics Preperation :
+	1. Spring IOC
+	2. Spring JPA
+	3. Spring MVC
+	4. Spring Core
+	5. Dependency Injection
+	6. Spring Boot Auto-Configuration
+	7. REST API development
+	8. Spring Security Basics (JWT preferred)
+	9. Spring AOP
+  10. Spring Actuator
+ 11. Transaction Management (@Transactional)
+ 12. Interceptor
+ 13. Filter
+	
+SQL Topics Preperation :
+	1. JOINs
+	2. Aggregation Functions
+	3. DDL
+	4. DML
+	5. DCL
+	6. TCL
+	7. DQL
+	8. Indexing
+	9. Constraints
+ 10. Normalization
+ 11. Query Optimization basics
+
+
