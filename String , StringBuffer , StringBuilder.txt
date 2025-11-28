@@ -1,0 +1,147 @@
+																															String , StringBuffer , StringBuilder
+
+	String is a sequence of characters. In Java, the String class represents a sequence of characters. All string literals in Java programs, such as "abc", are implemented as instances of this class. Strings are constant; their values cannot be changed after they are created because they are immutable in nature . String buffers support mutable strings. Because String objects are immutable they can be shared.
+	Every modification (concat, replace, substring, etc.) creates a new String object, not modifying the existing one.
+
+	For example: String str = "abc";
+
+	Is equivalent to:
+
+	char data[] = {'a', 'b', 'c'};
+
+	String str1 = new String(data);
+
+
+	There are two main ways to create and initialize a string:
+
+	1. Using String Literals (Static Memory)
+	2. Using the new Keyword (Heap Memory)
+	
+	1. Using String Literals:
+	
+			Syntax: <String Class Type> <Obj or Variable name> = "<Variable value>";
+
+			String Literal is any sequence of characters enclosed within " " double quotes. It is stored inside the String Pool (Static Memory).
+
+			Examples: String str = "abc";
+
+			Advantages of String Literals:
+			Memory optimization due to String Pool.
+			Strings are shared, avoiding unnecessary object creation.
+			
+	2. Using the new Keyword:
+	
+			Syntax: <String Class Type> <Obj or Variable name> = <'new' keyword> <String Constructor>;
+
+			New objects are created by JVM for using of new keyword. It is stored inside the Heap memory.
+
+			Examples: String str2 = new String("Hello, World!");
+
+			Disadvantages of Using new Keyword:
+			More memory consumption as each new call creates a separate object.
+			Less efficient compared to String literals when dealing with frequent string operations.
+
+	What is the String Pool?
+	
+		The String Pool is a special memory area inside the Heap that stores string literals ("Hello", "Java", etc.).
+		It helps save memory by reusing existing string objects instead of creating new ones.
+	
+	How Strings Are Stored in the Pool?
+	
+		When a string literal (String s = "Java";) is created, Java checks the pool:
+		If it exists, the reference is reused.
+		If it doesn’t exist, a new object is added to the pool.
+		Strings created using new String("Java") are stored outside the pool in the Heap.
+		
+	Memory Efficiency :
+	
+		Advantage: Saves memory by avoiding duplicate string objects.
+		Best Practice: Use string literals ("text") instead of new String("text").
+		
+	Why are Strings immutable?
+	
+		Immutable is a state/value of an object that can not be changed after creation. You can't change its value once you create any String object. That’s why Java Strings are immutable. Immutability provides security, memory efficiency, and thread safety. Performance benefits include hashcode caching and memory optimization in the String Pool.	
+
+		String Pool Optimization: Enables memory reuse, reducing redundant object creation.
+		Security: Prevents unauthorized modification in sensitive operations (e.g., passwords, URLs).
+		Thread Safety: Multiple threads can share String objects safely without synchronization.
+		Performance Boost: Hashcode caching improves efficiency in HashMap and HashSet.
+		Prevents Unintentional Modifications: Ensures predictable behavior when used across different references.
+		
+		
+Why StringBuffer Exists?
+	Because String is immutable, performing many modifications creates multiple new objects which make application slow and make memory heavy.
+	
+What is StringBuffer?
+	A class in java.lang package and Mutable (modifiable) in nature as well as Thread-safe (synchronized methods) but it is slower than StringBuilder because string builder not support thread safety.
+	
+	we can create string buffer in three ways
+		1. Using no arg consyructor => StringBuffer sb = new StringBuffer();
+		2. Using arg Constructor => StringBuffer sb = new StringBuffer("Hello");
+		3. Using arg Constructor (Define Capacuty)=> StringBuffer sb = new StringBuffer(50);
+		
+Why is StringBuffer thread-safe?
+	Because all methods present in String Buffer are synchronized, only one thread can modify it at a time.
+	
+*** StringBuffer and StringBuilder use dynamic array doubling strategy.
+		Formula : new capacity = (oldCapacity * 2) + 2;
+		The default capacity of a String Buffer or String Builder is 16, When the size get increased of the String then it increase the capacity.
+
+
+String Builder: 
+	StringBuilder is one of the most important classes for efficient string manipulation in Java.StringBuilder is a mutable (modifiable) sequence of characters.It is similar to StringBuffer but not synchronized, which makes it faster.
+	
+Why StringBuilder exists?
+	Because StringBuffer is synchronized (thread-safe), it is slower.
+	But most applications today are:
+		single-threaded OR
+		use thread-local variables
+	So Java introduced StringBuilder (Java 1.5) to improve speed.
+	
+	we can create string builder in three ways
+		1. Using no arg consyructor => StringBuilder sb = new StringBuilder();
+		2. Using arg Constructor => StringBuilder sb = new StringBuilder("Hello");
+		3. Using arg Constructor (Define Capacuty)=> StringBuilder sb = new StringBuilder(50);
+		
+Tricky Questions:
+	Q1.
+		String part = "lo";
+		String s1 = "Hello";
+		String s2 = "Hel" + part;
+		System.out.println(s1 == s2);
+
+	Q2.
+		StringBuilder sb = new StringBuilder("Test");
+		String s = sb.toString();
+		String s2 = sb.toString();
+		System.out.println(s == s2);
+		
+	Q3.
+		String a = "A";
+		String b = "B";
+		String c = a + b;
+		String d = "AB";
+		System.out.println(c == d);
+		
+	Q4.(s.intern() returns the pooled reference but you did not assign the return value.)
+		String s = new String("Hello");
+		s.intern();
+		String t = "Hello";
+		System.out.println(s == t);
+		
+	Q5. (.intern() returns SCP reference)
+		String s = "Hello";
+		String t = new String("Hello").intern();
+		System.out.println(s == t);
+		
+	Q6.
+		StringBuilder sb = new StringBuilder("Hello");
+		String s1 = sb.toString();
+		String s2 = sb.toString();
+		System.out.println(s1.equals(s2));
+		System.out.println(s1 == s2);
+
+
+
+
+

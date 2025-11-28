@@ -1,0 +1,62 @@
+Self Introduction 01 :
+
+	My name is Nasim Khan. I am currently working as a Software Engineer at Infosun Technologies Pvt. Ltd. I have a little over three years of experience in backend development, mainly using Java, Spring Boot, REST APIs, MySQL.
+
+	Along with backend development, I also work on AI integrations using OpenAI, LangChain, RAG and LangGraph, where I build automation pipelines and intelligent features for our GRC product.
+
+	Our company develops a GRC platform for Physical Security and Risk Management. My role is to design scalable backend modules, integrate AI workflows, build document processing pipelines, and contribute to overall product improvement.
+
+
+Self Introduction 02:
+
+	My name is Nasim Khan, and I am working as a Software Engineer with a little more than three years of experience. I mainly work on backend development using Java, Spring Boot, REST APIs, and MySQL. I enjoy building backend features, writing clean code, and solving technical problems.
+
+	In my current role, I work on designing and developing APIs, writing business logic, and creating database structures. I handle the complete backend flow—from understanding the requirement, planning the design, writing the code, testing it, and improving the performance whenever needed. I also work closely with the frontend team and QA team to make sure everything works smoothly from end to end.
+
+	Along with backend development, I also work with AI tools and automation. I use technologies like OpenAI, LangChain, LangGraph, and RAG. Using these tools, I build simple AI workflows, document processing pipelines, and features that help reduce manual effort. This includes tasks like reading documents, processing the text, generating answers, or helping users validate information. These AI features have helped me combine backend development with modern AI technologies, and I really enjoy working in this area.
+
+	As a person, I am hardworking and curious. I like understanding how things work, and I enjoy debugging and finding solutions. I learn new tools and technologies quickly, and I try to improve myself with every project. I am also responsible in my work, and I always try to finish my tasks on time. At the same time, I believe in teamwork and good communication because software development always needs coordination between different teams.
+
+	My main interests are backend development, API design, and integrating AI into real applications. Going forward, I want to grow as a strong backend engineer and learn more about scalable systems, architecture, and AI-based automation. I want to work on challenging problems and take more responsibility in the projects I work on.
+
+	Overall, I am someone who enjoys building things, learning new skills, and contributing to the team in a positive way.
+	
+Self Introduction 03:
+
+	Currently, I’m working as a Software Engineer with over three years of experience in backend development, mainly using Java, Spring Boot, REST APIs, and MySQL. I also work on integrating AI-based features using OpenAI, LangChain, LangGraph, and RAG, which helps automate different tasks in our application.
+
+	Technically, I focus on building and optimizing backend modules. My work includes developing RESTful APIs, writing business logic, improving database queries, and designing scalable backend flows. I handle API development, validations, exception handling, and performance improvements as part of my daily responsibilities.
+
+	Along with backend work, I am also involved in building AI workflows. This includes creating automation pipelines for document processing, text extraction, embeddings, RAG-based search, and integrating AI models into our backend services. I have also worked on features like internal chatbot, risk generation, and document validation based on uploaded files.
+
+	On the frontend side, I collaborate with the Angular team and sometimes assist in building reactive forms, validations, and routing logic to ensure the frontend and backend communicate smoothly. I work closely with QA and product teams to make sure every feature is tested properly and delivered on time.
+
+	My work helps improve system performance, reduce manual effort, and enhance the overall user experience. I enjoy solving technical problems, learning new tools, and building features that make the application smarter and more efficient.
+
+	Overall, I focus on clean backend design, stable API development, and integrating AI features that add real value to the product.
+
+About Company And Product : 
+
+	I am part of the team that develops a product called ComplianceWatch, which is a compliance and risk-assessment platform. Companies use our product to check how well they follow different security standards and policies, identify risks, find security gaps, and plan improvement actions.
+
+	In this project, I work as a full-stack developer using Angular, Java, Spring Boot, and MySQL.
+
+	On the backend, I build REST APIs for different modules like assessments, risk scoring, save-as-draft, tasks, user workflows, and document upload. I handle the complete business logic, validation, and database queries using Spring Boot, JPA, and MySQL.
+
+	On the frontend, I work with Angular to build screens such as dynamic survey forms, dashboards, task pages, and risk views. I mostly work with Reactive Forms, valueChanges logic, and condition-based question flows.
+	I also implemented important features like Save Draft, conditional form rendering, multi-step forms, and file upload handling.
+
+	Apart from core development, I was also involved in enhancing our product using OpenAI. I built:
+
+		an internal chatbot for our team to answer product-related queries,
+
+		a Risk Generator that analyzes client documents and auto-classifies risks based on their domain,
+
+		and a Document Validator that checks if the user-uploaded evidence is relevant to a particular question or risk.
+
+	These AI features helped automate our compliance workflows and reduced manual effort for our clients.
+
+	Overall, I work closely with my team to design features, develop APIs, build UI screens, fix issues, and improve user experience. I also participate in discussions with QA and product teams during sprints.
+
+	This project has given me strong hands-on experience in full-stack development, system design, and AI-driven enhancements, and I am now looking forward to taking more challenging responsibilities in my next role.
+		
