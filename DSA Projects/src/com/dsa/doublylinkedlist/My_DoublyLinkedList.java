@@ -4,7 +4,7 @@ public class My_DoublyLinkedList {
 
 	Node head;
 	Node tail;
-	Integer size;
+	Integer size=0;
 	
 	private static class Node{
 		

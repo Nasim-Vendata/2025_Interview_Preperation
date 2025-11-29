@@ -1,0 +1,209 @@
+																									Java Annotations 
+																									
+Annotation:
+	Annotations are metadata attached to program elements (types, methods, fields, parameters, packages, etc.). They are sticky notes for compilers, tools, frameworks, or runtime code.
+	
+	There are three main roles for annotations:
+			1. Compiler hints (@Override, @SuppressWarnings) — used by javac for checks.
+			2. Runtime metadata (@Retention(RUNTIME)) — frameworks inspect these through reflection.
+			3. Compile-time processing / code generation — annotation processors (APT) read annotations during compilation and generate code or diagnostics.
+
+List Of Annotations:
+	Class Level (Main Annotations)
+		@SpringBootApplication – Combo of @Configuration + @EnableAutoConfiguration + @ComponentScan. Marks the main class and starts the Spring Boot app.
+		@RestController – @Controller + @ResponseBody combined. Used for REST APIs returning JSON/XML directly.
+		@Controller – Traditional MVC controller that returns view names (Thymeleaf/JSP).
+		@Component – Generic stereotype for any Spring-managed bean.
+		@Service – Specialization of @Component for service layer (semantic only).
+		@Repository – Specialization of @Component for DAO layer + enables exception translation for JDBC/SQL exceptions.
+		@Configuration – Indicates class has @Bean methods for Java-based configuration.
+	
+	Method Level (REST Mapping)
+		@RequestMapping – General-purpose mapping (path, method, consumes, produces). Can be on class or method.
+		@GetMapping – Shortcut for @RequestMapping(method = GET)
+		@PostMapping – Shortcut for POST
+		@PutMapping – Shortcut for PUT
+		@DeleteMapping – Shortcut for DELETE
+		@PatchMapping – Shortcut for PATCH
+	
+	Request Parameters
+		@PathVariable – Extracts values from URI template, e.g., /users/{id} → @PathVariable Long id
+		@RequestParam – Extracts query parameters or form data, e.g., ?name=john → @RequestParam String name
+		@RequestBody – Deserializes JSON/XML request body into Java object (used in POST/PUT/PATCH).
+		@RequestHeader – Binds HTTP header to parameter, e.g., @RequestHeader("Authorization") String token
+		@MatrixVariable – Rarely used, extracts matrix variables like /cars;color=red;year=2020
+		
+	Response Handling
+		@ResponseBody – Returns method return value directly to response body (JSON). Built into @RestController.
+		@ResponseStatus – Sets custom HTTP status, e.g., @ResponseStatus(HttpStatus.CREATED) on POST method.
+	
+	Exception Handling
+		@ControllerAdvice – Global class for exception handling, model attributes across all controllers.
+		@ExceptionHandler – Defines method to handle specific exceptions inside @ControllerAdvice or controller.
+	
+	Validation
+		@Valid – Triggers Bean Validation on @RequestBody, @ModelAttribute, or method parameters.
+		@Validated – Used at class/method level for group validation or validating @RequestParam/@PathVariable.
+	
+	Configuration Properties
+		@ConfigurationProperties – Type-safe binding of application.yml/properties to a POJO using prefix.
+		@Value – Injects single property value, e.g., @Value("${app.name}") String name
+	
+	Dependency Injection
+		@Autowired – Auto-wires dependencies (constructor injection is best practice).
+		@Qualifier – Disambiguates when multiple beans of same type exist.
+		@Primary – Gives priority when multiple beans of same type are present.
+	
+	Spring Data JPA
+		@Entity – Marks class as JPA entity (mapped to DB table).
+		@Id – Marks primary key field.
+		@GeneratedValue – Auto-generates primary key (IDENTITY, SEQUENCE, AUTO, etc.).
+		@OneToMany, @ManyToOne, @ManyToMany, @OneToOne – Define JPA relationships.
+		@Transactional – Manages database transactions. Rolls back on unchecked exceptions by default.
+	
+	Spring Security
+		@Secured – Role-based method security, e.g., @Secured("ROLE_ADMIN")
+		@PreAuthorize / @PostAuthorize – Expression-based security, e.g., @PreAuthorize("hasRole('ADMIN')")
+		@EnableWebSecurity, @EnableMethodSecurity – Enable security configurations.
+	
+	Other Frequently Asked
+		@CrossOrigin – Enables CORS on controller/method.
+		@JsonIgnore (Jackson) – Excludes field from JSON serialization/deserialization.
+		@JsonProperty – Customizes JSON field name.
+		@Profile – Bean created only when specified profile (dev, prod) is active.
+		@ConditionalOnProperty – Bean created only if a property has expected value.
+		@Bean – Method returns object to be managed as Spring bean.
+		@Async – Makes method run asynchronously (requires @EnableAsync).
+		@Scheduled – Runs method on schedule (fixedRate, fixedDelay, cron).
+		
+		
+1. Difference between @RestController and @Controller
+		@Controller is used for traditional Spring MVC applications where methods return view names (like "index", "userForm") for server-side rendering.
+		@RestController is a specialized version of @Controller that adds @ResponseBody by default on every method. It is used for building REST APIs where methods return data (JSON/XML) directly in the response body, not view names.
+		In short: Use @Controller for web pages (Thymeleaf/JSP), use @RestController for REST APIs — 99% of modern Spring Boot projects use @RestController.
+		
+2. Difference between @RequestBody, @RequestParam and @PathVariable
+		@PathVariable → Extracts values from the URI path template.
+		Example: GET /users/25 → @PathVariable Long id → id = 25
+		@RequestParam → Extracts values from query parameters or form data.
+		Example: GET /users?name=Rahul&age=28 → @RequestParam String name
+		@RequestBody → Reads the entire HTTP request body (usually JSON) and converts it into a Java object using Jackson. Mandatory for POST/PUT/PATCH with JSON payload.
+
+		Summary: PathVariable from URL path, RequestParam from ?key=value, RequestBody from raw JSON body.
+		
+3.Why constructor injection is the best practice over field injection?
+
+		Field injection (@Autowired private UserService service) looks clean but has serious drawbacks:
+				Hidden dependencies
+				Hard to unit test (need reflection or Spring context)
+				Possible NullPointerException if not careful
+
+		Constructor injection (recommended by Spring team since 4.3):
+		
+				private final UserService service;
+				public UserController(UserService service) {
+					this.service = service;
+					}
+					
+		Advantages:
+				Dependencies are clear and immutable
+				Class is always valid after construction
+				Easy to unit test with new UserController(mockService)
+				Fails fast if dependency is missing
+				Hence, constructor injection is the official best practice.
+
+4. @Transactional – Propagation levels and rollback behavior
+
+			Default propagation: REQUIRED → joins existing transaction or creates new one.
+			Default rollback: Only on unchecked exceptions (RuntimeException and Error), NOT on checked exceptions.
+			
+			Most important propagation levels:
+				REQUIRED (default) – join or create
+				REQUIRES_NEW – always create new transaction, suspend current
+				NESTED – create savepoint (if DB supports)
+				SUPPORTS – join if exists, else non-transactional
+				MANDATORY – must have transaction, else throw exception
+				NEVER – must not have transaction, else throw exception
+
+		To rollback on checked exception:
+			@Transactional(rollbackFor = Exception.class)
+			
+5. What is @Valid and commonly used Bean Validation annotations?
+		@Valid triggers validation on the incoming object (usually with @RequestBody).
+		If validation fails, Spring throws MethodArgumentNotValidException and returns 400 Bad Request automatically.
+		
+		Common validation annotations:
+			@NotNull → value must not be null
+			@NotEmpty → not null and not empty (for collections/strings)
+			@NotBlank → not null, not empty, and not only whitespace (best for strings)
+			@Size(min=, max=) → length constraint
+			@Email → valid email format
+			@Min / @Max → numeric range
+			@Positive / @PositiveOrZero
+			@Pattern(regexp=) → regex validation
+
+		Always use @Valid @RequestBody CreateUserDTO user in controller.
+		
+6. Explain @ControllerAdvice and @ExceptionHandler
+
+		@ControllerAdvice is a global class that applies to all controllers.
+		@ExceptionHandler methods inside it can handle exceptions thrown from any controller.
+		
+		Example use:
+				Centralized exception handling
+				Convert business exceptions to proper HTTP status + JSON error response
+				Handle validation errors globally
+
+				@ControllerAdvice
+				public class GlobalExceptionHandler {
+						@ExceptionHandler(ResourceNotFoundException.class)
+						@ResponseStatus(NOT_FOUND)
+						public ErrorResponse handleNotFound(...) { ... }
+
+						@ExceptionHandler(MethodArgumentNotValidException.class)
+						@ResponseStatus(BAD_REQUEST)
+						public Map<String, String> handleValidation(...) { ... }
+					}
+
+
+	Keeps controllers clean and error handling consistent.
+	
+7. @ConfigurationProperties vs @Value – which one to use when?
+
+			@Value → injects single property, simple but not type-safe, no validation, hard to manage many values.
+			@ConfigurationProperties → binds a group of related properties to a typed POJO, supports validation (@NotBlank etc.), relaxed binding, better for externalized config.
+			
+			Best practice:
+			Use @Value only for simple, few values
+			Use @ConfigurationProperties (with @Validated) for any group of related settings (database, mail, third-party API config etc.)
+
+8. What happens internally when we use @GetMapping, @PostMapping etc.?
+		They are just shortcuts (composed annotations) for @RequestMapping with specific HTTP method.
+		Example:
+		@GetMapping("/users")  is same as @RequestMapping(value = "/users", method = RequestMethod.GET)
+		
+		During startup:
+			Spring scans all @RestController classes
+			Finds methods with @GetMapping/@PostMapping etc.
+			Registers them in HandlerMapping
+			At runtime, DispatcherServlet uses HandlerMapping to find the correct method
+			Method returns object → HttpMessageConverter (Jackson) converts it to JSON
+
+9. Difference between @Component, @Service and @Repository
+			All three are stereotypes of @Component → all make the class a Spring bean.
+			
+			Differences:
+					@Component → generic, any Spring-managed component
+					@Service → semantically indicates business service layer (no technical difference)
+					@Repository → for data access layer + automatically translates database exceptions (SQLException → Spring DataAccessException)
+
+		Only @Repository has real technical benefit (exception translation).
+		
+10. What three annotations does @SpringBootApplication contain?
+
+			@SpringBootApplication is a combination of three annotations:
+					@Configuration → marks class as source of bean definitions
+					@EnableAutoConfiguration → enables Spring Boot’s auto-configuration magic (starts most of the "it just works" features)
+					@ComponentScan → scans current package and sub-packages for @Component, @Service, @Repository, @Controller etc.
+
+			So writing @SpringBootApplication on the main class is equivalent to writing all three separately with default settings.
