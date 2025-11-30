@@ -53,6 +53,7 @@ public class Merge_Sort {
 			arr[k]=leftArray[i];
 			i++;
 			k++;
+			
 		}
 		
 		while(j<rightArraySize) {
