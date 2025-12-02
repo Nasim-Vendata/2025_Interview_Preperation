@@ -12,7 +12,7 @@ DSA Custom Design :
 	11. Basic Graph (BFS/DFS)
 	
 Sorting Algorithm : (Learn Time Complexities & Stability)
-	1. Merge Sort
+	1. Merge Sort 
 	2. Quick Sort ***
 	3. Heap Sort
 	4. Insertion Sort ***
